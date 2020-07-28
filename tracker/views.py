@@ -1,10 +1,12 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
 
-from .models import Choice, Question
+from .forms import ShotRecordingForm
+from .models import Choice, Question, Shot
 
+# babyyniyaalolo
 
 class IndexView(generic.ListView):
     template_name = 'tracker/index.html'
@@ -23,6 +25,33 @@ class DetailView(generic.DetailView):
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'tracker/results.html'
+
+
+def ShotRecorderView(request):
+    form = ShotRecordingForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'tracker/shot_recording.html', context)
+
+
+# class PastShotView(generic.ListView):
+#     context_object_name = 'all_shot'
+#     template_name = 'tracker/past_shot.html'
+#
+#     def get_queryset(self):
+#         return Shot.objects.order_by('-pub_date')
+
+def PastShot(request):
+
+    query_results = Shot.objects.all()
+    context = {'query_results': query_results}
+    return render(request, 'tracker/past_shot.html', context)
 
 
 def vote(request, question_id):

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method='POST'> {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save" />
+</form>
+<br>
+<div>
+    <a class="btn btn-primary" href="{% url 'tracker:past_shot' %}">View Records</a>
+</div>
+
+
+{% endblock %}

@@ -1,7 +1,9 @@
 from django.db import models
 from django.utils import timezone
+from django.utils.timezone import now
 import datetime
 
+from django import forms
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
@@ -21,3 +23,17 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
+
+
+class Shot(models.Model):
+
+    shot_group = models.CharField(max_length=20, default='1')
+    pub_date = models.DateTimeField('date published', default=now)
+
+    shot_type = models.CharField(max_length=100)
+    shot_location = models.CharField(max_length=100)
+    landing_spot = models.CharField(max_length=100)
+    in_out = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.shot_group

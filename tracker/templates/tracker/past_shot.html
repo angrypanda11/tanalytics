@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+
+
+<table>
+    <tr>
+        <th>shot_group</th>
+        <th>shot_location</th>
+        <th>shot_type</th>
+        <th>landing_spot</th>
+        <th>in_out</th>
+
+    </tr>
+    {% for item in query_results %}
+    <tr>
+        <td>{{ item.shot_group }}</td>
+        <td>{{ item.shot_location }}</td>
+        <td>{{ item.shot_type }}</td>
+        <td>{{ item.landing_spot }}</td>
+        <td>{{ item.in_out }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<br>
+<div>
+    <a class="btn btn-primary" href="{% url 'tracker:shot' %}">Record More</a>
+</div>
+
+{% endblock %}

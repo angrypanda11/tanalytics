@@ -2,6 +2,8 @@
 
 {% block content %}
 
+
+
 <h1>{{ question.question_text }}</h1>
 
 <ul>
@@ -10,7 +12,23 @@
 {% endfor %}
 </ul>
 
-<a href="{% url 'tracker:detail' question.id %}">Vote again?</a>
+<!--<a href="{% url 'tracker:detail' question.id %}">Vote again?</a>-->
+
+<ul class="nav nav-pills">
+    <li class="nav-item">
+    <a class="nav-link active" href="http://127.0.0.1:8000/tracker/">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="http://127.0.0.1:8000/tracker/3/">landing spot</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="http://127.0.0.1:8000/tracker/2/">shot location</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="http://127.0.0.1:8000/tracker/1/">shot type</a>
+  </li>
+
+</ul>
 
 
 {% endblock %}
